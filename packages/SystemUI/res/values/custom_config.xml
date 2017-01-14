@@ -30,4 +30,8 @@
     <!--The number of columns in the QSPanel -->
     <integer name="qs_panel_num_columns">4</integer>
     <integer name="qs_panel_num_columns_landscape">6</integer>
+
+    <!-- StatusBar burn-in protection -->
+    <bool name="config_statusBarBurnInProtection">true</bool>
+    <integer name="config_shift_interval">60</integer>
 </resources>
