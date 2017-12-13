@@ -351,6 +351,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mPreviewContainer = previewContainer;
         inflateCameraPreview();
         updateLeftAffordance();
+        updateRightAffordance();
         updateIndicationAreaPadding();
     }
 
@@ -456,8 +457,10 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mRightAffordanceView.setVisibility(!mDozing && state.isVisible ? View.VISIBLE : View.GONE);
         if (state.isVisible) {
             if (state.drawable != mRightAffordanceView.getDrawable()
-                    || state.tint != mRightAffordanceView.shouldTint()) {
-                mRightAffordanceView.setImageDrawable(state.drawable, state.tint);
+                    || state.tint != mRightAffordanceView.shouldTint()
+		    || !state.isDefaultButton) {
+                mRightAffordanceView.setImageDrawable(state.drawable, state.tint,
+                    state.isDefaultButton ? false : true);
             }
             mRightAffordanceView.setContentDescription(state.contentDescription);
         }
@@ -476,6 +479,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mUserSetupComplete = userSetupComplete;
         updateCameraVisibility();
         updateLeftAffordanceIcon();
+        updateRightAffordanceIcon();
     }
 
     protected Intent getRightIntent() {
@@ -541,8 +545,10 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mLeftAffordanceView.setVisibility(state.isVisible ? View.VISIBLE : View.GONE);
         if (state.isVisible) {
             if (state.drawable != mLeftAffordanceView.getDrawable()
-                    || state.tint != mLeftAffordanceView.shouldTint()) {
-                mLeftAffordanceView.setImageDrawable(state.drawable, state.tint);
+                    || state.tint != mLeftAffordanceView.shouldTint()
+                    || !state.isDefaultButton) {
+                mLeftAffordanceView.setImageDrawable(state.drawable, state.tint,
+                    state.isDefaultButton ? false : true);
             }
             mLeftAffordanceView.setContentDescription(state.contentDescription);
         }
@@ -966,9 +972,9 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
 
     private void setRightButton(IntentButton button) {
         mRightButton = button;
-        updateRightAffordanceIcon();
         updateCameraVisibility();
         inflateCameraPreview();
+        updateRightAffordance();
     }
 
     private void setLeftButton(IntentButton button) {
@@ -987,6 +993,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         updateLeftAffordanceIcon();
         updateWalletVisibility();
         updateControlsVisibility();
+        updateRightAffordanceIcon();
 
         if (dozing) {
             mOverlayContainer.setVisibility(INVISIBLE);
