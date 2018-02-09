@@ -66,6 +66,7 @@ import com.android.systemui.qs.tiles.RefreshRateTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
 import com.android.systemui.qs.tiles.SmartPixelsTile;
+import com.android.systemui.qs.tiles.SoundSearchTile;
 import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
@@ -128,7 +129,8 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<FPSInfoTile> mFPSInfoTileProvider;
     private final Provider<CompassTile> mCompassTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
-    private final Provider<SmartPixelsTile> mSmartPixelsTileProvider;
+    private final Provider<SmartPixelsTile> mSmartPixelsTileProvider;;
+    private final Provider<SoundSearchTile> mSoundSearchTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
     private final Provider<CustomTile.Builder> mCustomTileBuilderProvider;
@@ -181,7 +183,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<FPSInfoTile> fpsInfoTileProvider,
             Provider<CompassTile> compassTileProvider,
             Provider<DataSwitchTile> dataSwitchTileProvider,
-            Provider<SmartPixelsTile> smartPixelsTileProvider) {
+            Provider<SmartPixelsTile> smartPixelsTileProvider,
+            Provider<SoundSearchTile> soundSearchTileProvider) {
         mQsHostLazy = qsHostLazy;
         mCustomTileBuilderProvider = customTileBuilderProvider;
 
@@ -230,6 +233,7 @@ public class QSFactoryImpl implements QSFactory {
         mCompassTileProvider = compassTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mSmartPixelsTileProvider = smartPixelsTileProvider;
+        mSoundSearchTileProvider = soundSearchTileProvider;
     }
 
     /** Creates a tile with a type based on {@code tileSpec} */
@@ -336,6 +340,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mDataSwitchTileProvider.get();
             case "smartpixels":
                 return mSmartPixelsTileProvider.get();
+            case "soundsearch":
+                return mSoundSearchTileProvider.get();
         }
 
         // Custom tiles
