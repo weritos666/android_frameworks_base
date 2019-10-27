@@ -5370,6 +5370,12 @@ public final class Settings {
         public static final String STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION = "status_bar_clock_auto_hide_sduration";
 
         /**
+         * Shows system info in QS OFF:0, CPU temp:1, battery temp:2, gpu freq: 3, gpu load: 4
+         * @hide
+         */
+        public static final String QS_SYSTEM_INFO = "qs_system_info";
+
+        /**
          * Whether to display QS clock
          * @hide
          */
@@ -6148,6 +6154,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
+            PRIVATE_SETTINGS.add(QS_SYSTEM_INFO);
         }
 
         /**

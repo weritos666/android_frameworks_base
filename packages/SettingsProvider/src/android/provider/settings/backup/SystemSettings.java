@@ -93,5 +93,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_LOGO_STYLE,
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.DOZE_ON_CHARGE,
+        Settings.System.QS_SYSTEM_INFO,
     };
 }
