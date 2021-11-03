@@ -846,6 +846,8 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
     // SystemUi sets the pinned mode on activity after transition is done.
     boolean mWaitForEnteringPinnedMode;
 
+    private final ActivityRecordInputSink mActivityRecordInputSink;
+
     private final Runnable mPauseTimeoutRunnable = new Runnable() {
         @Override
         public void run() {
@@ -1850,6 +1852,8 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
             createTime = _createTime;
         }
         mAtmService.mPackageConfigPersister.updateConfigIfNeeded(this, mUserId, packageName);
+
+        mActivityRecordInputSink = new ActivityRecordInputSink(this);
     }
 
     /**
@@ -6926,6 +6930,10 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
                 getSyncTransaction().show(mSurfaceControl);
             } else if (!show && mLastSurfaceShowing) {
                 getSyncTransaction().hide(mSurfaceControl);
+            }
+            if (show) {
+                mActivityRecordInputSink.applyChangesToSurfaceIfChanged(
+                        getSyncTransaction(), mSurfaceControl);
             }
         }
         if (mThumbnail != null) {
