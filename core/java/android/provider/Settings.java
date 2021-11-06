@@ -5941,6 +5941,12 @@ public final class Settings {
         };
 
         /**
+         * Whether to play haptic feedback when touching udfps icon
+         * @hide
+         */
+        public static final String UDFPS_HAPTIC_FEEDBACK = "udfps_haptic_feedback";
+
+        /**
          * These are all public system settings
          *
          * @hide
