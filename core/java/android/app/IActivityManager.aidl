@@ -743,4 +743,45 @@ interface IActivityManager {
      * Set whether three fingers to screen shot is active.
      */
     void setSwipeToScreenshotGestureActive(boolean enabled);
+
+    /**
+     * Sets scale value for package in DSS list
+     *
+     * @throws RemoteException
+     */
+    void setDssForPackage(in String packageName, float scale);
+
+    /**
+     * Shows all information of package applied DSS
+     *
+     * @throws RemoteException
+     */
+    void showAllDSSInfo();
+
+    /**
+     * Adds package into Dss list
+     *
+     * @throws RemoteException
+     */
+    void addPackageData(in String packageName, float scalingFactor);
+
+    /**
+     * Checks the scale app
+     *
+     * @throws RemoteException
+     */
+    boolean isScaledApp(int pid);
+
+    /**
+     * Checks the scale app by package
+     *
+     * @throws RemoteException
+     */
+    boolean isScaledAppByPackageName(in String packageName);
+
+    /**
+     * Gets scale value of package
+     * @throws RemoteException
+     */
+    float getScalingFactor(in String packageName);
 }
