@@ -104,11 +104,9 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
     }
 
     @Override
-    void initialize() {
-        super.initialize();
-        if (mHorizontalContentContainer != null) {
-            mHorizontalContentContainer.setClipChildren(false);
-        }
+    protected void setHorizontalContentContainerClipping() {
+        mHorizontalContentContainer.setClipToPadding(false);
+        mHorizontalContentContainer.setClipChildren(false);
         updateColumns();
     }
 

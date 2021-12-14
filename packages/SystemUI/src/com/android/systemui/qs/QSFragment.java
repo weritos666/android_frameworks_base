@@ -509,6 +509,12 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
     }
 
     @Override
+    public int getHeightDiff() {
+        return mQSPanelScrollView.getBottom() - mHeader.getBottom()
+                + mHeader.getPaddingBottom();
+    }
+
+    @Override
     public void setQsExpansion(float expansion, float panelExpansionFraction,
             float proposedTranslation, float squishinessFraction) {
         float headerTranslation = mTransitioningToFullShade ? 0 : proposedTranslation;
@@ -542,8 +548,7 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
 
         boolean fullyExpanded = expansion == 1;
         boolean fullyCollapsed = expansion == 0.0f;
-        int heightDiff = mQSPanelScrollView.getBottom() - mHeader.getBottom()
-                + mHeader.getPaddingBottom();
+        int heightDiff = getHeightDiff();
         float panelTranslationY = translationScaleY * heightDiff;
 
         // Let the views animate their contents correctly by giving them the necessary context.
