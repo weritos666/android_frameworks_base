@@ -6588,7 +6588,7 @@ public class ActivityManagerService extends IActivityManager.Stub
 
     @Override
     public void requestSystemServerHeapDump() {
-        if (!Build.IS_ENG) {
+        if (!Build.IS_DEBUGGABLE) {
             Slog.wtf(TAG, "requestSystemServerHeapDump called on a non eng build.");
             return;
         }
@@ -15065,7 +15065,7 @@ public class ActivityManagerService extends IActivityManager.Stub
                     throw new IllegalArgumentException("Unknown process: " + process);
                 }
 
-                boolean isDebuggable = Build.IS_DEBUGGABLE;
+                boolean isDebuggable = Build.IS_ENG;
                 if (!isDebuggable) {
                     if ((proc.info.flags&ApplicationInfo.FLAG_DEBUGGABLE) == 0) {
                         throw new SecurityException("Process not debuggable: " + proc);
@@ -17361,7 +17361,7 @@ public class ActivityManagerService extends IActivityManager.Stub
         int callerUid = Binder.getCallingUid();
 
         // Only system can toggle the freezer state
-        if (callerUid == SYSTEM_UID || Build.IS_DEBUGGABLE) {
+        if (callerUid == SYSTEM_UID || Build.IS_ENG) {
             return mOomAdjuster.mCachedAppOptimizer.enableFreezer(enable);
         } else {
             throw new SecurityException("Caller uid " + callerUid + " cannot set freezer state ");
