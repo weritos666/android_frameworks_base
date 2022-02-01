@@ -208,6 +208,8 @@ public final class NotificationRecord {
     // are sorted.
     private boolean mPendingLogUpdate = false;
 
+    private boolean mIsBubbleUpSuppressedByAppLock = false;
+
     public NotificationRecord(Context context, StatusBarNotification sbn,
             NotificationChannel channel) {
         this.sbn = sbn;
@@ -1529,6 +1531,14 @@ public final class NotificationRecord {
         return mPendingLogUpdate;
     }
 
+    public void setBubbleUpSuppressedByAppLock(boolean suppressed) {
+        mIsBubbleUpSuppressedByAppLock = suppressed;
+    }
+
+    public boolean isBubbleUpSuppressedByAppLock() {
+        return mIsBubbleUpSuppressedByAppLock;
+    }
+    
     /**
      * Merge the given set of phone numbers into the list of phone numbers that
      * are cached on this notification record.
