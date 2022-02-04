@@ -2282,8 +2282,7 @@ public abstract class BaseShortcutManagerTest extends InstrumentationTestCase {
 
     protected List<ShortcutInfo> getShortcutAsLauncher(int targetUserId) {
         final ShortcutQuery q = new ShortcutQuery();
-        q.setQueryFlags(ShortcutQuery.FLAG_MATCH_DYNAMIC | ShortcutQuery.FLAG_MATCH_DYNAMIC
-                | ShortcutQuery.FLAG_MATCH_PINNED);
+        q.setQueryFlags(ShortcutQuery.FLAG_MATCH_DYNAMIC | ShortcutQuery.FLAG_MATCH_PINNED);
         return mLauncherApps.getShortcuts(q, UserHandle.of(targetUserId));
     }
 
