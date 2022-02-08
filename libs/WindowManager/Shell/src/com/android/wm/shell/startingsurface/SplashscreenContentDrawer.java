@@ -67,6 +67,7 @@ import com.android.internal.graphics.palette.Quantizer;
 import com.android.internal.graphics.palette.VariationalKMeansQuantizer;
 import com.android.launcher3.icons.BaseIconFactory;
 import com.android.launcher3.icons.IconProvider;
+import com.android.wm.shell.common.ShellExecutor;
 import com.android.wm.shell.common.TransactionPool;
 
 import java.util.List;
@@ -113,8 +114,10 @@ public class SplashscreenContentDrawer {
     private final Handler mSplashscreenWorkerHandler;
     @VisibleForTesting
     final ColorCache mColorCache;
+    private final ShellExecutor mSplashScreenExecutor;
 
-    SplashscreenContentDrawer(Context context, IconProvider iconProvider, TransactionPool pool) {
+    SplashscreenContentDrawer(Context context, IconProvider iconProvider, TransactionPool pool,
+            ShellExecutor splashScreenExecutor) {
         mContext = context;
         mIconProvider = iconProvider;
         mTransactionPool = pool;
@@ -127,6 +130,7 @@ public class SplashscreenContentDrawer {
         shellSplashscreenWorkerThread.start();
         mSplashscreenWorkerHandler = shellSplashscreenWorkerThread.getThreadHandler();
         mColorCache = new ColorCache(mContext, mSplashscreenWorkerHandler);
+        mSplashScreenExecutor = splashScreenExecutor;
     }
 
     /**
@@ -387,7 +391,7 @@ public class SplashscreenContentDrawer {
 
         SplashScreenView build() {
             Drawable iconDrawable;
-            final int animationDuration;
+            final long animationDuration;
             if (mSuggestType == STARTING_WINDOW_TYPE_EMPTY_SPLASH_SCREEN
                     || mSuggestType == STARTING_WINDOW_TYPE_LEGACY_SPLASH_SCREEN) {
                 // empty or legacy splash screen case
@@ -447,8 +451,8 @@ public class SplashscreenContentDrawer {
                         iconDrawable, mDefaultIconSize, mFinalIconSize, mSplashscreenWorkerHandler);
             } else {
                 mFinalIconDrawables = SplashscreenIconDrawableFactory.makeIconDrawable(
-                        mTmpAttrs.mIconBgColor, mThemeColor,
-                        iconDrawable, mDefaultIconSize, mFinalIconSize, mSplashscreenWorkerHandler);
+                        mTmpAttrs.mIconBgColor, mThemeColor, iconDrawable, mDefaultIconSize,
+                        mFinalIconSize, mSplashscreenWorkerHandler, mSplashScreenExecutor);
             }
         }
 
@@ -510,7 +514,7 @@ public class SplashscreenContentDrawer {
         }
 
         private SplashScreenView fillViewWithIcon(int iconSize, @Nullable Drawable[] iconDrawable,
-                int animationDuration, Consumer<Runnable> uiThreadInitTask) {
+                long animationDuration, Consumer<Runnable> uiThreadInitTask) {
             Drawable foreground = null;
             Drawable background = null;
             if (iconDrawable != null) {
