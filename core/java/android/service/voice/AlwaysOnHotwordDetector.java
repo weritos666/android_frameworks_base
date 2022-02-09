@@ -993,11 +993,14 @@ public class AlwaysOnHotwordDetector extends AbstractHotwordDetector {
     /**
      * Invalidates this hotword detector so that any future calls to this result
      * in an IllegalStateException.
-     *
-     * @hide
      */
-    void invalidate() {
+    @Override
+    public void destroy() {
         synchronized (mLock) {
+            if (mAvailability == STATE_KEYPHRASE_ENROLLED) {
+                stopRecognition();
+            }
+
             mAvailability = STATE_INVALID;
             notifyStateChangedLocked();
 
@@ -1009,6 +1012,7 @@ public class AlwaysOnHotwordDetector extends AbstractHotwordDetector {
                 }
             }
         }
+        super.destroy();
     }
 
     /**
