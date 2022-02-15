@@ -2609,7 +2609,7 @@ public class AppOpsManager {
             AppOpsManager.MODE_ALLOWED, // READ_ICC_SMS
             AppOpsManager.MODE_ALLOWED, // WRITE_ICC_SMS
             AppOpsManager.MODE_DEFAULT, // WRITE_SETTINGS
-            getSystemAlertWindowDefault(), // SYSTEM_ALERT_WINDOW
+            AppOpsManager.MODE_DEFAULT, // SYSTEM_ALERT_WINDOW /*Overridden in opToDefaultMode()*/
             AppOpsManager.MODE_ALLOWED, // ACCESS_NOTIFICATIONS
             AppOpsManager.MODE_ALLOWED, // CAMERA
             AppOpsManager.MODE_ALLOWED, // RECORD_AUDIO
@@ -2925,6 +2925,8 @@ public class AppOpsManager {
     private static final String DEBUG_LOGGING_OPS_PROP = "appops.logging_ops";
     private static final String DEBUG_LOGGING_TAG = "AppOpsManager";
 
+    private static volatile Integer sOpSystemAlertWindowDefaultMode;
+
     /**
      * Retrieve the op switch that controls the given operation.
      * @hide
@@ -3023,6 +3025,9 @@ public class AppOpsManager {
      * @hide
      */
     public static @Mode int opToDefaultMode(int op) {
+        if (op == OP_SYSTEM_ALERT_WINDOW) {
+            return getSystemAlertWindowDefault();
+        }
         return sOpDefaultMode[op];
     }
 
@@ -10032,6 +10037,11 @@ public class AppOpsManager {
     }
 
     private static int getSystemAlertWindowDefault() {
+        // This is indeed racy but we aren't expecting the result to change so it's not worth
+        // the synchronization.
+        if (sOpSystemAlertWindowDefaultMode != null) {
+            return sOpSystemAlertWindowDefaultMode;
+        }
         final Context context = ActivityThread.currentApplication();
         if (context == null) {
             return AppOpsManager.MODE_DEFAULT;
@@ -10042,10 +10052,11 @@ public class AppOpsManager {
         // TVs are constantly plugged in and has less concern for memory/power
         if (ActivityManager.isLowRamDeviceStatic()
                 && !pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK, 0)) {
-            return AppOpsManager.MODE_IGNORED;
+            sOpSystemAlertWindowDefaultMode = AppOpsManager.MODE_IGNORED;
+        } else {
+            sOpSystemAlertWindowDefaultMode = AppOpsManager.MODE_DEFAULT;
         }
-
-        return AppOpsManager.MODE_DEFAULT;
+        return sOpSystemAlertWindowDefaultMode;
     }
 
     /**
