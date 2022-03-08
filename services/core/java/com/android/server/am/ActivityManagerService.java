@@ -16386,12 +16386,13 @@ public class ActivityManagerService extends IActivityManager.Stub
 
         @Override
         public void addPendingTopUid(int uid, int pid) {
-            mPendingStartActivityUids.add(uid, pid);
+        
             // We need to update the network rules for the app coming to the top state so that
             // it can access network when the device or the app is in a restricted state
             // (e.g. battery/data saver) but since waiting for updateOomAdj to complete and then
             // informing NetworkPolicyManager might get delayed, informing the state change as soon
             // as we know app is going to come to the top state.
+            if (!isPendingTopUid(uid)) {
             if (mNetworkPolicyUidObserver != null) {
                 try {
                     mNetworkPolicyUidObserver.onUidStateChanged(uid, PROCESS_STATE_TOP,
@@ -16399,6 +16400,7 @@ public class ActivityManagerService extends IActivityManager.Stub
                 } catch (RemoteException e) {
                     // Should not happen; call is within the same process
                 }
+              }
             }
 
             // If the next top activity is in cached and frozen mode, WM should raise its priority
@@ -16408,7 +16410,12 @@ public class ActivityManagerService extends IActivityManager.Stub
             // next top activity on time. This race will fail the following binder transactions WM
             // sends to the activity. After this race issue between WM/ATMS and AMS is solved, this
             // workaround can be removed. (b/213288355)
-            mOomAdjuster.mCachedAppOptimizer.unfreezeProcess(pid);
+            if (!isPendingTopUid(uid)) {
+                mOomAdjuster.mCachedAppOptimizer.unfreezeProcess(pid);
+            }
+
+            mPendingStartActivityUids.add(uid, pid);
+            
         }
 
         @Override
