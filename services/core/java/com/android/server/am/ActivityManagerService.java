@@ -1517,6 +1517,7 @@ public class ActivityManagerService extends IActivityManager.Stub
 
     final SwipeToScreenshotObserver mSwipeToScreenshotObserver;
     private boolean mIsSwipeToScrenshotEnabled;
+    private boolean mIsSwipeToScreenshotActive;
 
     private CutoutFullscreenController mCutoutFullscreenController;
 
@@ -17363,9 +17364,12 @@ public class ActivityManagerService extends IActivityManager.Stub
     }
 
     public boolean isSwipeToScreenshotGestureActive() {
-        synchronized (this) {
-            return mIsSwipeToScrenshotEnabled && SystemProperties.getBoolean("sys.android.screenshot", false);
-        }
+        return mIsSwipeToScrenshotEnabled && mIsSwipeToScreenshotActive;
+    }
+
+    @Override
+    public void setSwipeToScreenshotGestureActive(boolean enabled) {
+        mIsSwipeToScreenshotActive = enabled;
     }
 
     @Override
