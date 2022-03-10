@@ -2307,7 +2307,8 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
         if (!mWmService.mStartingSurfaceController.DEBUG_ENABLE_SHELL_DRAWER) {
             return false;
         }
-        if (!mHandleExitSplashScreen || mStartingSurface == null || mStartingWindow == null
+        if (finishing || !mHandleExitSplashScreen || mStartingSurface == null
+                || mStartingWindow == null
                 || mTransferringSplashScreenState == TRANSFER_SPLASH_SCREEN_FINISH) {
             return false;
         }
