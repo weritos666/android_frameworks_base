@@ -313,7 +313,7 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
     @UnsupportedAppUsage
     @TestApi
     @MainThread
-    public static void setDurationScale(@FloatRange(from = 0, to = 1) float durationScale) {
+    public static void setDurationScale(@FloatRange(from = 0) float durationScale) {
         sDurationScale = durationScale;
         List<WeakReference<DurationScaleChangeListener>> listenerCopy;
 
@@ -337,7 +337,7 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
      *
      * @return the duration scale.
      */
-    @FloatRange(from = 0, to = 1)
+    @FloatRange(from = 0)
     public static float getDurationScale() {
         return sDurationScale;
     }
@@ -1791,8 +1791,8 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
     public interface DurationScaleChangeListener {
         /**
          * Called when the duration scale changes.
-         * @param scale the duration scalel
+         * @param scale the duration scale
          */
-        void onChanged(float scale);
+        void onChanged(@FloatRange(from = 0) float scale);
     }
 }
