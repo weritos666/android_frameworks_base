@@ -3221,5 +3221,11 @@
   <public type="id" name="accessibilityActionDragStart" id="0x01020055" />
   <public type="id" name="accessibilityActionDragDrop" id="0x01020056" />
   <public type="id" name="accessibilityActionDragCancel" id="0x01020057" />
-
+  
+    <staging-public-group-final type="attr" first-id="0x01df0000">
+    <!-- @hide -->
+    <public name="maxDrawableWidth" />
+    <!-- @hide -->
+    <public name="maxDrawableHeight" />
+  </staging-public-group-final>
 </resources>

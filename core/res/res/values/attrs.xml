@@ -9608,4 +9608,11 @@
     <attr name="iconfactoryBadgeSize" format="dimension"/>
     <!-- Perceptual luminance of a color, in accessibility friendly color space. From 0 to 100. -->
     <attr name="lStar" format="float"/>
+    <!-- @hide -->
+    <declare-styleable name="CachingIconView">
+        <!-- Maximum width of displayed drawable. Drawables exceeding this size will be downsampled. -->
+        <attr name="maxDrawableWidth" format="dimension"/>
+        <!-- Maximum width of height drawable. Drawables exceeding this size will be downsampled. -->
+        <attr name="maxDrawableHeight" format="dimension"/>
+    </declare-styleable>
 </resources>
