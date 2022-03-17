@@ -16,7 +16,11 @@
 
 package com.android.internal.util.crdroid;
 
+import android.app.AlertDialog;
+import android.app.IActivityManager;
 import android.app.ActivityManager;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -32,6 +36,7 @@ import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.Vibrator;
 
+import com.android.internal.R;
 import com.android.internal.statusbar.IStatusBarService;
 
 import java.util.List;
@@ -74,6 +79,51 @@ public class Utils {
 
     public static boolean deviceHasFlashlight(Context ctx) {
         return ctx.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+    }
+
+
+   public static void showSettingsRestartDialog(Context context) {
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.settings_restart_title)
+                .setMessage(R.string.settings_restart_message)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        restartSettings(context);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    public static void restartSettings(Context context) {
+        new restartSettingsTask(context).execute();
+    }
+
+    private static class restartSettingsTask extends AsyncTask<Void, Void, Void> {
+        private Context mContext;
+
+        public restartSettingsTask(Context context) {
+            super();
+            mContext = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                ActivityManager am =
+                        (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+                IActivityManager ams = ActivityManager.getService();
+                for (ActivityManager.RunningAppProcessInfo app: am.getRunningAppProcesses()) {
+                    if ("com.android.settings".equals(app.processName)) {
+                    	ams.killApplicationProcess(app.processName, app.uid);
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
     public static boolean hasNavbarByDefault(Context context) {

@@ -101,4 +101,8 @@
 
     <!-- Sensor block -->
     <java-symbol type="array" name="config_blockPackagesSensorDrain" />
+
+   <!-- Settings Restart -->
+   <java-symbol type="string" name="settings_restart_title" />
+   <java-symbol type="string" name="settings_restart_message" />
 </resources>
