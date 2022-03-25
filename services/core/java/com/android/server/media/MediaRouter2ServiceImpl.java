@@ -1137,6 +1137,8 @@ class MediaRouter2ServiceImpl {
             if (DEBUG) {
                 Slog.d(TAG, userRecord + ": Disposed");
             }
+            userRecord.mHandler.sendMessage(
+                    obtainMessage(UserHandler::stop, userRecord.mHandler));
             mUserRecords.remove(userRecord.mUserId);
             // Note: User already stopped (by switchUser) so no need to send stop message here.
         }
@@ -1317,6 +1319,7 @@ class MediaRouter2ServiceImpl {
         private void start() {
             if (!mRunning) {
                 mRunning = true;
+                mSystemProvider.start();
                 mWatcher.start();
             }
         }
@@ -1325,6 +1328,7 @@ class MediaRouter2ServiceImpl {
             if (mRunning) {
                 mRunning = false;
                 mWatcher.stop(); // also stops all providers
+                mSystemProvider.stop();
             }
         }
 
