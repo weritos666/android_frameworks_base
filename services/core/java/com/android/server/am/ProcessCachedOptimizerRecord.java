@@ -56,6 +56,8 @@ final class ProcessCachedOptimizerRecord {
     @GuardedBy("mProcLock")
     private boolean mPendingCompact;
 
+    @GuardedBy("mProcLock") private boolean mForceCompact;
+
     /**
      * True when the process is frozen.
      */
@@ -142,6 +144,16 @@ final class ProcessCachedOptimizerRecord {
     @GuardedBy("mProcLock")
     void setHasPendingCompact(boolean pendingCompact) {
         mPendingCompact = pendingCompact;
+    }
+
+    @GuardedBy("mProcLock")
+    boolean isForceCompact() {
+        return mForceCompact;
+    }
+
+    @GuardedBy("mProcLock")
+    void setForceCompact(boolean forceCompact) {
+        mForceCompact = forceCompact;
     }
 
     @GuardedBy("mProcLock")
@@ -237,6 +249,9 @@ final class ProcessCachedOptimizerRecord {
     void dump(PrintWriter pw, String prefix, long nowUptime) {
         pw.print(prefix); pw.print("lastCompactTime="); pw.print(mLastCompactTime);
         pw.print(" lastCompactAction="); pw.println(mLastCompactAction);
+        pw.print(prefix);
+        pw.print("hasPendingCompaction=");
+        pw.print(mPendingCompact);
         pw.print(prefix); pw.print("isFreezeExempt="); pw.print(mFreezeExempt);
         pw.print(" isPendingFreeze="); pw.print(mPendingFreeze);
         pw.print(" " + IS_FROZEN + "="); pw.println(mFrozen);
