@@ -5337,6 +5337,7 @@ public class NotificationPanelViewController extends PanelViewController {
         String reTickerContent;
         if (visibility && getExpandedFraction() != 1) {
             mNotificationStackScroller.setVisibility(View.GONE);
+            mCentralSurfaces.updateDismissAllVisibility(false);
             StatusBarNotification sbn = mHeadsUpManager.getTopEntry().getRow().getEntry().getSbn();
             Notification notification = sbn.getNotification();
             String pkgname = sbn.getPackageName();
