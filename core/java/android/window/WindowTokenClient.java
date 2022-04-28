@@ -23,6 +23,7 @@ import android.annotation.BinderThread;
 import android.annotation.MainThread;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.app.ActivityThread;
 import android.app.IWindowToken;
 import android.app.ResourcesManager;
 import android.content.Context;
@@ -33,7 +34,6 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.IWindowManager;
@@ -41,6 +41,7 @@ import android.view.WindowManager.LayoutParams.WindowType;
 import android.view.WindowManagerGlobal;
 
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.internal.util.function.pooled.PooledLambda;
 
 import java.lang.ref.WeakReference;
 
@@ -74,7 +75,7 @@ public class WindowTokenClient extends IWindowToken.Stub {
 
     private boolean mAttachToWindowContainer;
 
-    private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private final Handler mHandler = ActivityThread.currentActivityThread().getHandler();
 
     /**
      * Attaches {@code context} to this {@link WindowTokenClient}. Each {@link WindowTokenClient}
@@ -188,8 +189,8 @@ public class WindowTokenClient extends IWindowToken.Stub {
     @BinderThread
     @Override
     public void onConfigurationChanged(Configuration newConfig, int newDisplayId) {
-        mHandler.post(() -> onConfigurationChanged(newConfig, newDisplayId,
-                true /* shouldReportConfigChange */));
+        mHandler.post(PooledLambda.obtainRunnable(this::onConfigurationChanged, newConfig,
+                newDisplayId, true /* shouldReportConfigChange */).recycleOnUse());
     }
 
     // TODO(b/192048581): rewrite this method based on WindowContext and WindowProviderService
@@ -258,12 +259,16 @@ public class WindowTokenClient extends IWindowToken.Stub {
     @BinderThread
     @Override
     public void onWindowTokenRemoved() {
-        mHandler.post(() -> {
-            final Context context = mContextRef.get();
-            if (context != null) {
-                context.destroy();
-                mContextRef.clear();
-            }
-        });
+        mHandler.post(PooledLambda.obtainRunnable(
+                WindowTokenClient::onWindowTokenRemovedInner, this).recycleOnUse());
+    }
+
+    @MainThread
+    private void onWindowTokenRemovedInner() {
+        final Context context = mContextRef.get();
+        if (context != null) {
+            context.destroy();
+            mContextRef.clear();
+        }
     }
 }
