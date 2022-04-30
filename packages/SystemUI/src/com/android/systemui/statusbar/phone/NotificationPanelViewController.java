@@ -3254,7 +3254,7 @@ public class NotificationPanelViewController extends PanelViewController {
             alpha *= mClockPositionResult.clockAlpha;
         }
         mNotificationStackScrollLayoutController.setAlpha(alpha);
-        if (mBarState != StatusBarState.KEYGUARD && !isFullyCollapsed()) {
+        if (mBarState != StatusBarState.KEYGUARD && !isFullyCollapsed() || !isPanelVisibleBecauseOfHeadsUp()) {
             mCentralSurfaces.updateDismissAllVisibility(true);
         }
     }
