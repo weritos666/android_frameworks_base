@@ -5666,12 +5666,6 @@ public final class Settings {
         public static final String ARTWORK_MEDIA_BACKGROUND_ALPHA = "artwork_media_background_alpha";
 
         /**
-         * Whether to force small clock on keyguard
-         * @hide
-         */
-        public static final String LOCKSCREEN_SMALL_CLOCK = "lockscreen_small_clock";
-
-        /**
          * Whether to enable the pixel navbar animation
          * @hide
          */
