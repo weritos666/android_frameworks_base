@@ -105,4 +105,8 @@
    <!-- Settings Restart -->
    <java-symbol type="string" name="settings_restart_title" />
    <java-symbol type="string" name="settings_restart_message" />
+
+  <!-- SystemUI Restart -->
+   <java-symbol type="string" name="sysui_restart_title" />
+   <java-symbol type="string" name="sysui_restart_message" />
 </resources>
