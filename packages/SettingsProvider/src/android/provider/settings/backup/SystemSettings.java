@@ -86,10 +86,8 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.ARTWORK_MEDIA_BACKGROUND_ALPHA,
         Settings.System.STATUS_BAR_LOGO,
-        Settings.System.STATUS_BAR_LOGO_COLOR,
         Settings.System.STATUS_BAR_LOGO_POSITION,
         Settings.System.STATUS_BAR_LOGO_STYLE,
-        Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.DOZE_ON_CHARGE,
     };
