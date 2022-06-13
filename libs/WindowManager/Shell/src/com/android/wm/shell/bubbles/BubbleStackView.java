@@ -2102,10 +2102,9 @@ public class BubbleStackView extends FrameLayout
     private void animateSwitchBubbles() {
         // If we're no longer expanded, this is meaningless.
         if (!mIsExpanded) {
+            mIsBubbleSwitchAnimating = false;
             return;
         }
-
-        mIsBubbleSwitchAnimating = true;
 
         // The surface contains a screenshot of the animating out bubble, so we just need to animate
         // it out (and then release the GraphicBuffer).
@@ -2700,6 +2699,7 @@ public class BubbleStackView extends FrameLayout
             bev.setManageClickListener((view) -> showManageMenu(!mShowingManage));
 
             if (!mIsExpansionAnimating) {
+                mIsBubbleSwitchAnimating = true;
                 mSurfaceSynchronizer.syncSurfaceAndRun(() -> {
                     post(this::animateSwitchBubbles);
                 });
