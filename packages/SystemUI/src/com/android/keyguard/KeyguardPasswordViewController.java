@@ -64,6 +64,7 @@ public class KeyguardPasswordViewController
     private final boolean mShowImeAtScreenOn;
     private EditText mPasswordEntry;
     private ImageView mSwitchImeButton;
+    private boolean mPaused;
 
     private final boolean quickUnlock = (Settings.System.getIntForUser(getContext().getContentResolver(),
             Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL, 0, UserHandle.USER_CURRENT) == 1);
@@ -219,6 +220,7 @@ public class KeyguardPasswordViewController
     @Override
     public void onResume(int reason) {
         super.onResume(reason);
+        mPaused = false;
         if (reason != KeyguardSecurityView.SCREEN_ON || mShowImeAtScreenOn) {
             showInput();
         }
@@ -235,6 +237,11 @@ public class KeyguardPasswordViewController
 
     @Override
     public void onPause() {
+        if (mPaused) {
+            return;
+        }
+        mPaused = true;
+
         if (!mPasswordEntry.isVisibleToUser()) {
             // Reset all states directly and then hide IME when the screen turned off.
             super.onPause();
