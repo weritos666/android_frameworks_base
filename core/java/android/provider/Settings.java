@@ -5834,6 +5834,13 @@ public final class Settings {
         public static final String SMART_PIXELS_SHIFT_TIMEOUT = "smart_pixels_shift_timeout";
 
         /**
+         *  Toggle the wallpaper zoom effects
+         *  0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DISPLAY_SETTINGS_WALLPAPER_ZOOM = "display_settings_wallpaper_zoom";
+
+        /**
          * Whether Smart Pixels should enable on power saver mode
          * @hide
          */
