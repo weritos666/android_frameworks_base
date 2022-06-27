@@ -1057,7 +1057,7 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable,
         // explicitly DO NOT want to call
         // mKeyguardViewControllerLazy.get().setKeyguardGoingAwayState(false)
         // here, since that will mess with the device lock state.
-        boolean isUdfps = deviceHasUdfps();
+        final boolean isUdfps = deviceHasUdfps();
         if (!isUdfps) {
         mUpdateMonitor.dispatchKeyguardGoingAway(false);
 	}
