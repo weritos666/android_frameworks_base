@@ -5720,8 +5720,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             @Override
             public void onSwipeThreeFinger() {
                 mHandler.removeCallbacks(mScreenshotRunnable);
+                if (!mClickPartialScreenshot) {
                 mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
                 mScreenshotRunnable.setScreenshotSource(SCREENSHOT_KEY_OTHER);
+                }
                 mHandler.post(mScreenshotRunnable);
             }
         });
