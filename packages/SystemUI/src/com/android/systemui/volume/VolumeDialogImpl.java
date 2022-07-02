@@ -1321,7 +1321,7 @@ public class VolumeDialogImpl implements VolumeDialog,
             Drawable icon = getApplicationIcon(mAppVolumeActivePackageName);
             if (icon != null) {
                 mAppVolumeIcon.setImageTintList(null);
-                mAppVolumeIcon.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                mAppVolumeIcon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 mAppVolumeIcon.setImageDrawable(icon);
             }
         }
