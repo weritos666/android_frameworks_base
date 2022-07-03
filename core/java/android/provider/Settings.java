@@ -11268,7 +11268,7 @@ public final class Settings {
          * Whether to turn on black theme
          * @hide
          */
-        public static final String SYSTEM_BLACK_THEME = "system_black_theme";
+        public static final String VIVID_COLORS = "vivid_colors";
 
         /**
          * Whether to show or hide the arrow for back gesture
