@@ -50,10 +50,10 @@
     <string name="url_copy_failed">An error occured while uploading the log to Pasty</string>
 
    <!-- Settings Restart -->
-   <string name="settings_restart_title">Settings restart required</string>
-   <string name="settings_restart_message">For all changes to take effect, a Settings restart is required. Incase assests were not updated, you may need to manually Restart the Settings app, Soft Restart Settings now?</string>
+   <string name="settings_restart_title">Settings app restart required</string>
+   <string name="settings_restart_message">Warning! When performing a settings app restart, user will experience a temporary settings app crash/force close. Restart settings app now?</string>
    
    <!-- SystemUI Restart -->
-   <string name="sysui_restart_title">SystemUI restart required</string>
-   <string name="sysui_restart_message">Warning! For all changes to take effect, a SystemUI restart is required, upon restarting, user will experience a temporary SystemUI crash, Restart SystemUI now?</string>
+   <string name="sysui_restart_title">Systemui restart required</string>
+   <string name="sysui_restart_message">Warning! When performing a systemui restart, user will experience a temporary systemui crash/black screen. Restart systemui now?</string>
 </resources>
