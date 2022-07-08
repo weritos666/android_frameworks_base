@@ -59,5 +59,7 @@
 
     <!-- Whitelist of what components are permitted to run in the background -->
     <allow-in-power-save package="com.android.deskclock" />
+    
+     <allow-ignore-location-settings package="com.android.dialer" attributionTag="*" />
 
 </config>
