@@ -17,7 +17,7 @@
 <resources>
 
     <color name="accent_device_default_light">@*android:color/accent_device_default_light</color>
-
+    <color name="sysui_color_accent">@*android:color/system_accent1_600</color>
     <!-- Color for the Assistant invocation lights -->
     <color name="edge_light_blue">#ff4185f4</color>
     <color name="edge_light_green">#ff3aa853</color>

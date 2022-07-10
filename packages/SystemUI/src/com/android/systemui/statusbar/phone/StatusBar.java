@@ -1559,7 +1559,7 @@ public class StatusBar extends SystemUI implements
                 break;
         }
         mDismissAllButton.setElevation(mContext.getResources().getDimension(R.dimen.dismiss_all_button_elevation));
-        mDismissAllButton.setColorFilter(mContext.getColor(R.color.notif_pill_text));
+        mDismissAllButton.setColorFilter(mContext.getColor(R.color.sysui_color_accent));
         switch (mClearAllBgStyle) {
             case 1:
                 mDismissAllButton.setBackground(mContext.getTheme().getDrawable(R.drawable.dismiss_all_background1));
