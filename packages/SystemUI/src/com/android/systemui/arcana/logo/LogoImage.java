@@ -230,6 +230,12 @@ public abstract class LogoImage extends ImageView {
             case 32:
                 drawable = mContext.getResources().getDrawable(R.drawable.ic_guitar_electric);
                 break;
+            case 33:
+                drawable = mContext.getResources().getDrawable(R.drawable.peachy_icon);
+                break;
+            case 34:
+                drawable = mContext.getResources().getDrawable(R.drawable.rice_icon);
+                break;
         }
 
         setImageDrawable(null);
