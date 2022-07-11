@@ -5994,6 +5994,11 @@ public final class Settings {
         public static final String QS_TILE_ANIMATION_INTERPOLATOR = "qs_tile_animation_interpolator";
 
         /**
+         * @hide
+         */
+        public static final String WFD_LEGACY_VIDEO_MODE = "wfd_legacy_video_mode";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
