@@ -268,7 +268,6 @@ public class OomAdjuster {
     int mBServiceAppThreshold = 5;
     // Enable B-service aging propagation on memory pressure.
     boolean mEnableBServicePropagation = false;
-    boolean mAllowLowerMemLevel = false;
     
     private final int mNumSlots;
     private final ArrayList<ProcessRecord> mTmpProcessList = new ArrayList<ProcessRecord>();
@@ -1343,7 +1342,7 @@ public class OomAdjuster {
             }
         }
 
-        if ((numBServices > mBServiceAppThreshold) && (true == mAllowLowerMemLevel)
+        if ((numBServices > mBServiceAppThreshold) && (true == mService.mAppProfiler.allowLowerMemLevelLocked())
                 && (selectedAppRecord != null)) {
             ProcessList.setOomAdj(selectedAppRecord.getPid(), selectedAppRecord.info.uid,
                     ProcessList.CACHED_APP_MAX_ADJ);
