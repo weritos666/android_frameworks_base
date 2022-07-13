@@ -260,6 +260,17 @@ applications that come with the platform
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
         <permission name="android.permission.UPDATE_APP_OPS_STATS"/>
         <permission name="android.permission.USE_RESERVED_DISK"/>
+        <!-- added -->
+        <permission name="android.permission.GET_ACCOUNTS"/>
+        <permission name="android.permission.PROCESS_PHONE_ACCOUNT_REGISTRATION"/>
+        <permission name="android.permission.READ_CONTACTS"/>
+        <permission name="android.permission.READ_PHONE_STATE"/>
+        <permission name="android.permission.READ_SYNC_SETTINGS"/>
+        <permission name="android.permission.SEND_CALL_LOG_CHANGE"/>
+        <permission name="android.permission.WRITE_CONTACTS"/>
+        <permission name="android.permission.READ_DEVICE_CONFIG"/>
+        <permission name="android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS"/>
+        <permission name="android.permission.READ_PHONE_NUMBERS"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.android.providers.downloads">
