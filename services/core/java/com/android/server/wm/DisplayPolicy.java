@@ -3341,6 +3341,9 @@ public class DisplayPolicy {
     }
 
     private boolean supportsPointerLocation() {
+        if (mDisplayContent.getDisplay().isPublicPresentation()) {
+            return false;
+        }
         return mDisplayContent.isDefaultDisplay || !mDisplayContent.isPrivate();
     }
 
