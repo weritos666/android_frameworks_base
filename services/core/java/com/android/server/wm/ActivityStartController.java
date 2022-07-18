@@ -124,12 +124,11 @@ public class ActivityStartController {
     }
 
     void onExecutionComplete(ActivityStarter starter) {
-        if (mLastStarter == null) {
-            mLastStarter = mFactory.obtain();
+        if (mLastStarter != null) {
+            mFactory.recycle(mLastStarter);
         }
 
-        mLastStarter.set(starter);
-        mFactory.recycle(starter);
+        mLastStarter = starter;
     }
 
     /**
