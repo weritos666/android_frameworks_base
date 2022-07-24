@@ -6476,11 +6476,6 @@ public final class Settings {
          @hide
          public static final String OMNI_FOO_BAR_BALABALA = "foo_bar_balabala";
         */
-        
-        /**
-         * @hide
-         */
-        public static final String OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
 
         /**
          * @hide
@@ -6504,7 +6499,6 @@ public final class Settings {
          * @hide
          */
         public static final String[] OMNI_SETTINGS_TO_BACKUP = {
-            OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
             OMNI_QS_LAYOUT_COLUMNS,
             OMNI_QS_TILE_VERTICAL_LAYOUT,
             OMNI_QS_TILE_LABEL_HIDE,
@@ -6521,7 +6515,6 @@ public final class Settings {
          */
         public static final Map<String, Integer> OMNI_SETTINGS_VALIDATORS = new ArrayMap<>();
         static {
-            OMNI_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE, 1);
             OMNI_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, 1);
             OMNI_SETTINGS_VALIDATORS.put(OMNI_QS_TILE_VERTICAL_LAYOUT, 0);
             OMNI_SETTINGS_VALIDATORS.put(OMNI_QS_TILE_LABEL_HIDE, 0);
