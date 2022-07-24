@@ -400,8 +400,6 @@ import com.android.server.wm.WindowManagerInternal;
 import com.android.server.wm.WindowManagerService;
 import com.android.server.wm.WindowProcessController;
 
-import com.android.internal.util.crdroid.cutout.CutoutFullscreenController;
-
 import dalvik.system.VMRuntime;
 
 import libcore.util.EmptyArray;
@@ -1520,8 +1518,6 @@ public class ActivityManagerService extends IActivityManager.Stub
     private boolean mIsSwipeToScrenshotEnabled;
     private boolean mIsSwipeToScreenshotActive;
 
-    private CutoutFullscreenController mCutoutFullscreenController;
-
     /**
      * Used to notify activity lifecycle events.
      */
@@ -2378,9 +2374,6 @@ public class ActivityManagerService extends IActivityManager.Stub
         mPendingStartActivityUids = new PendingStartActivityUids(mContext);
         mTraceErrorLogger = new TraceErrorLogger();
         mSwipeToScreenshotObserver = new SwipeToScreenshotObserver(mHandler, mContext);
-
-        // Force full screen for devices with cutout
-        mCutoutFullscreenController = new CutoutFullscreenController(mContext);
     }
 
     public void setSystemServiceManager(SystemServiceManager mgr) {
@@ -17423,13 +17416,6 @@ public class ActivityManagerService extends IActivityManager.Stub
         mIsSwipeToScreenshotActive = enabled;
     }
 
-    @Override
-    public boolean shouldForceCutoutFullscreen(String packageName) {
-        synchronized (this) {
-            return mCutoutFullscreenController.shouldForceCutoutFullscreen(packageName);
-        }
-    }
-    
     boolean shouldSkipBootCompletedBroadcastForPackage(ApplicationInfo info) {
         return (mActivityTaskManager.mAppStandbyInternal.isStrictStandbyPolicyEnabled()
                 || mOomAdjuster.mForceBackgroundFreezerEnabled) &&
