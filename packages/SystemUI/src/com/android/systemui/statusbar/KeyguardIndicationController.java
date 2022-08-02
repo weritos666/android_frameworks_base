@@ -52,8 +52,11 @@ import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.os.IBatteryPropertiesRegistrar;
+import android.os.ServiceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.text.format.Formatter;
@@ -161,12 +164,14 @@ public class KeyguardIndicationController {
     private boolean mBatteryPresent = true;
     private long mChargingTimeRemaining;
     private int mChargingCurrent;
+    private int mBatteryCurrentDivider;
     private double mChargingVoltage;
     private float mTemperature;
     private String mMessageToShowOnScreenOn;
     private boolean mInited;
 
     private int mCurrentDivider;
+    private IBatteryPropertiesRegistrar mBatteryPropertiesRegistrar;
 
     private KeyguardUpdateMonitorCallback mUpdateMonitorCallback;
 
@@ -214,7 +219,8 @@ public class KeyguardIndicationController {
         mIActivityManager = iActivityManager;
         mFalsingManager = falsingManager;
         mKeyguardBypassController = keyguardBypassController;
-
+        mBatteryCurrentDivider = mContext.getResources()
+                .getInteger(R.integer.config_battCurrentDivider);
     }
 
     /** Call this after construction to finish setting up the instance. */
@@ -234,6 +240,9 @@ public class KeyguardIndicationController {
         mStatusBarStateListener.onDozingChanged(mStatusBarStateController.isDozing());
 
         mCurrentDivider = mContext.getResources().getInteger(R.integer.config_currentInfoDivider);
+        mBatteryPropertiesRegistrar =
+                    IBatteryPropertiesRegistrar.Stub.asInterface(
+                    ServiceManager.getService("batteryproperties"));
     }
 
     public void setIndicationArea(ViewGroup indicationArea) {
@@ -854,21 +863,25 @@ public class KeyguardIndicationController {
         }
 
         String batteryInfo = "";
+        int current = 0;
+        double voltage = 0;
         boolean showbatteryInfo = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.LOCKSCREEN_BATTERY_INFO, 1, UserHandle.USER_CURRENT) == 1;
         boolean batteryTempUnit = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT, 1, UserHandle.USER_CURRENT) == 0;
-         if (showbatteryInfo) {
+        if (showbatteryInfo) {
             if (mChargingCurrent > 0) {
-                batteryInfo = batteryInfo + (mChargingCurrent / mCurrentDivider) + "mA";
+                current = (mChargingCurrent / mBatteryCurrentDivider);
+                batteryInfo = batteryInfo + current + "mA";
             }
-            if (mChargingWattage > 0) {
+            if (mChargingVoltage > 0 && mChargingCurrent > 0) {
+                voltage = (mChargingVoltage / 1000 / 1000);
                 batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " • ") +
-                        String.format("%.1f" , (mChargingWattage / mCurrentDivider / 1000)) + "W";
+                        String.format("%.1f" , ((double) current / 1000) * voltage) + "W";
             }
             if (mChargingVoltage > 0) {
                 batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " • ") +
-                        String.format("%.1f", (float) (mChargingVoltage / 1000 / 1000)) + "V";
+                        String.format("%.1f" , voltage) + "V";
             }
             if (mTemperature > 0) {
                 if (batteryTempUnit) {
@@ -995,6 +1008,20 @@ public class KeyguardIndicationController {
         mRotateTextViewController.dump(fd, pw, args);
     }
 
+    private final Runnable mUpdateInfo = new Runnable() {
+        public void run() {
+            long now = SystemClock.uptimeMillis();
+            long next = now + (1000 - now % 1000);
+            try {
+                mBatteryPropertiesRegistrar.scheduleUpdate();
+            } catch (RemoteException e) {
+            }
+            if (mHandler != null) {
+                mHandler.postAtTime(mUpdateInfo, next);
+            }
+        }
+    };
+
     protected class BaseKeyguardCallback extends KeyguardUpdateMonitorCallback {
         public static final int HIDE_DELAY_MS = 5000;
 
@@ -1022,6 +1049,13 @@ public class KeyguardIndicationController {
             } catch (RemoteException e) {
                 Log.e(TAG, "Error calling IBatteryStats: ", e);
                 mChargingTimeRemaining = -1;
+            }
+            if (wasPluggedIn != mPowerPluggedIn) {
+                if (mPowerPluggedIn) {
+                    mUpdateInfo.run();
+                } else {
+                    mHandler.removeCallbacks(mUpdateInfo);
+                }
             }
             updateIndication(!wasPluggedIn && mPowerPluggedInWired);
             if (mDozing) {
