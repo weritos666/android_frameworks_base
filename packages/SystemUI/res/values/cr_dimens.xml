@@ -22,6 +22,11 @@
     <!-- Width of the landscape battery icon in the status bar. -->
     <dimen name="status_bar_battery_icon_width_landscape">20dp</dimen>
 
+     <!-- Height of the big battery circle icon in the status bar. -->
+    <dimen name="status_bar_battery_bigcircle_icon_height">20.5dp</dimen>
+     <!-- Width of the big battery circle icon in the status bar. -->
+    <dimen name="status_bar_battery_bigcircle_icon_width">20.5dp</dimen>
+
     <dimen name="fps_info_text_padding">4dp</dimen>
 
     <!-- Screenshot drawables -->
@@ -104,4 +109,5 @@
     <dimen name="qs_header_alarm_icon_size">@dimen/status_bar_icon_drawing_size</dimen>
     <dimen name="qs_status_separator">8dp</dimen>
     <dimen name="qs_temperatur_icon_size">16sp</dimen>
+ 
 </resources>
