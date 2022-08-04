@@ -5,26 +5,26 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- AOD QS tile -->
-    <string name="quick_settings_aod_label">AOD</string>
-    <string name="quick_settings_aod_on_charge_label">AOD on charge</string>
-    <string name="quick_settings_aod_off_label">AOD off</string>
-    <string name="quick_settings_aod_off_powersave_label">AOD off\nBattery saver</string>
+    <string name="quick_settings_aod_label">Her zaman açık ekran</string>
+    <string name="quick_settings_aod_on_charge_label">Şarj olurken her zaman açık ekran</string>
+    <string name="quick_settings_aod_off_label">Her zaman açık ekran kapalı</string>
+    <string name="quick_settings_aod_off_powersave_label">Her zaman açık ekran kapalı\nPil tasarrufu</string>
     <!-- Data usage info in QS footer -->
-    <string name="usage_data">used today</string>
-    <string name="usage_data_default_suffix">Data</string>
+    <string name="usage_data">bugün kullanılan</string>
+    <string name="usage_data_default_suffix">Mobil Veri</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
     <!-- Google Lens Screenshot string -->
     <string name="lensss">Lens</string>
     <!-- Refresh Rate Tile -->
-    <string name="refresh_rate_tile_label">Refresh rate</string>
-    <string name="refresh_rate_auto_mode_placeholder">        Auto (<xliff:g id="min_refresh_rate" example="60">%1$d</xliff:g> - <xliff:g id="max_refresh_rate" example="60">%2$d</xliff:g> Hz)
+    <string name="refresh_rate_tile_label">Yenileme hızı</string>
+    <string name="refresh_rate_auto_mode_placeholder">        Otomatik (<xliff:g id="min_refresh_rate" example="60">%1$d</xliff:g> - <xliff:g id="max_refresh_rate" example="60">%2$d</xliff:g> Hz)
     </string>
-    <string name="refresh_rate_forced_mode_placeholder"><xliff:g id="refresh_rate" example="60">%1$d</xliff:g> Hz</string>
+    <string name="refresh_rate_forced_mode_placeholder"><xliff:g id="refresh_rate" example="60">%1$d</xliff:g>Hz</string>
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
-    <string name="custom_hint">Swipe from icon to launch</string>
+    <string name="custom_hint">Başlatmak için simgeden kaydırın</string>
     <!-- SystemUI Restart power menu -->
-    <string name="global_action_reboot_systemui">SystemUI</string>
+    <string name="global_action_reboot_systemui">Sistem Arayüzü</string>
     <!-- SystemUI tuner -->
-    <string name="lockscreen_default">Default</string>
-    <string name="lockscreen_hidden">None</string>
+    <string name="lockscreen_default">Varsayılan</string>
+    <string name="lockscreen_hidden">Hiçbiri</string>
 </resources>

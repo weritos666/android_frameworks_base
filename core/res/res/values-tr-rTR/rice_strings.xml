@@ -16,11 +16,11 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Settings Restart -->
-  <string name="settings_restart_title">Settings app restart required</string>
-  <string name="settings_restart_message">Warning! When performing a settings app restart, user will experience a temporary settings app crash/force close. Restart settings app now?</string>
+  <string name="settings_restart_title">Ayarların yeniden başlatılması gerekir</string>
+  <string name="settings_restart_message">Dikkat! Ayarlar uygulamasını yeniden başlatırken uygulamada geçici bir çökme veya zorla kapatma meydana gelir. Ayarlar şimdi yeniden başlatılsın mı?</string>
   <!-- SystemUI Restart -->
-  <string name="sysui_restart_title">Systemui restart required</string>
-  <string name="sysui_restart_message">Warning! When performing a systemui restart, user will experience a temporary systemui crash/black screen. Restart systemui now?</string>
+  <string name="sysui_restart_title">Sistem arayüzünü yeniden başlatma gerekli</string>
+  <string name="sysui_restart_message">Dikkat! Sistem arayüzünü yeniden başlatırken uygulamada geçici bir çökme veya siyah ekran meydana gelir. Sistem arayüzü şimdi yeniden başlatılsın mı?</string>
   <!-- App lock -->
-  <string name="unlock_application">Unlock <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+  <string name="unlock_application">Kilidi aç <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>
