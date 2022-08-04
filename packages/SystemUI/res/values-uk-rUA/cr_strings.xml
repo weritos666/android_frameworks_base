@@ -18,7 +18,7 @@
     <!-- Label for notification action to delete a screen recording file [CHAR LIMIT=35] -->
     <string name="screenrecord_delete_label">Видалити</string>
     <!-- A toast message shown after successfully deleting a screen recording [CHAR LIMIT=NONE] -->
-    <string name="screenrecord_delete_description">Запис з екрану видалено</string>
+    <string name="screenrecord_delete_description">Запис екрану видалено</string>
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Звук</string>
     <string name="quick_settings_sound_ring">Дзвінок</string>
@@ -106,7 +106,7 @@
     <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
     <string name="screenshot_delete_description">Видалити скріншот</string>
     <!-- Face Unlock -->
-    <string name="face_unlock_recognizing">Розпізнавання...</string>
+    <string name="face_unlock_recognizing">Розпізнавання обличчя...</string>
     <!-- Screen record -->
     <string name="screenrecord_stopdot_label">Показувати кнопку зупинки</string>
     <string name="screenrecord_stopdot_summary">Тривале натискання для переміщення</string>
