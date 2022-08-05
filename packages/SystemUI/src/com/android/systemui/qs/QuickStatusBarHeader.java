@@ -132,7 +132,6 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
     private TextView mSystemInfoText;
     private int mSystemInfoMode;
     private ImageView mSystemInfoIcon;
-    private View mSystemInfoLayout;
     private String mSysCPUTemp;
     private String mSysBatTemp;
     private String mSysGPUFreq;
@@ -229,7 +228,6 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
         mRightLayout = findViewById(R.id.rightLayout);
         mDateContainer = findViewById(R.id.date_container);
         mPrivacyContainer = findViewById(R.id.privacy_container);
-        mSystemInfoLayout = findViewById(R.id.system_info_layout);
         mSystemInfoIcon = findViewById(R.id.system_info_icon);
         mSystemInfoText = findViewById(R.id.system_info_text);
 
@@ -305,19 +303,19 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
 
         switch (mSystemInfoMode) {
             case 1:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_cpu_thermometer));
                 mSystemInfoText.setText(getCPUTemp());
                 break;
             case 2:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_batt_thermometer));
                 mSystemInfoText.setText(getBatteryTemp());
                 break;
             case 3:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_speed_gpu));
                 mSystemInfoText.setText(getGPUClock());
                 break;
             case 4:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_memory_gpu));
                 mSystemInfoText.setText(getGPUBusy());
                 break;
             default:
