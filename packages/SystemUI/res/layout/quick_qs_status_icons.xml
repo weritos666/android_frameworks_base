@@ -32,6 +32,7 @@
         android:layout_height="match_parent"
         android:paddingStart="@dimen/status_bar_padding_start"
         android:orientation="horizontal"
+        android:paddingBottom="8dp"
         android:layout_gravity="center_vertical|start"
         android:gravity="center_vertical|start"
         >
@@ -40,45 +41,49 @@
             android:id="@+id/clock"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:minHeight="27dp"
-            android:gravity="center_vertical|start"
+            android:textSize="25dp"
+            android:gravity="bottom|start"
             android:paddingStart="@dimen/status_bar_left_clock_starting_padding"
             android:paddingEnd="@dimen/status_bar_left_clock_end_padding"
-            android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.QS.CustomClock"
+            android:includeFontPadding="false"
             systemui:showDark="false" />
 
         <com.android.systemui.statusbar.policy.VariableDateView
             android:id="@+id/date_clock"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/status_bar_left_clock_end_padding"
-            android:gravity="center_vertical|start"
-            android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.QS.Status"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="bottom|start"
+            android:textSize="14dp"
+            android:includeFontPadding="false"
             systemui:longDatePattern="@string/abbrev_wday_month_day_no_year_alarm"
             systemui:shortDatePattern="@string/abbrev_month_day_no_year"
         />
-
-        <ImageView
+       <ImageView
             android:id="@+id/system_info_icon"
             android:layout_width="@dimen/qs_header_alarm_icon_size"
             android:layout_height="@dimen/qs_header_alarm_icon_size"
-            android:layout_marginStart="@dimen/status_bar_left_clock_end_padding"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="bottom|start"
+            android:layout_gravity="bottom|start"
             android:visibility="gone" />
 
         <com.android.systemui.util.AutoMarqueeTextView
             android:id="@+id/system_info_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.QS.Status"
-            android:gravity="center_vertical|start"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:textSize="14dp"
+            android:gravity="bottom|start"
+            android:includeFontPadding="false"
             android:visibility="gone"/>
     </LinearLayout>
 
-    <include layout="@layout/qs_carrier_group"
-        android:id="@+id/carrier_group"
+    <include layout="@layout/qqs_separator"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -86,6 +91,7 @@
         android:minWidth="48dp"
         android:layout_marginStart="8dp"
         android:layout_gravity="end|center_vertical"
+        android:visibility="invisible"
         android:focusable="false"/>
 
     <View
@@ -102,6 +108,7 @@
         android:id="@+id/rightLayout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:paddingTop="8dp"
         android:gravity="end"
         >
     <LinearLayout

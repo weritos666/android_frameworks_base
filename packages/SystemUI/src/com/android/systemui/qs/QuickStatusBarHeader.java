@@ -104,7 +104,6 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
 
     protected QuickQSPanel mHeaderQsPanel;
     private View mDatePrivacyView;
-    private View mDateView;
     // DateView next to clock. Visible on QQS
     private VariableDateView mClockDateView;
     private View mSecurityHeaderView;
@@ -219,8 +218,6 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
         mContainer = findViewById(R.id.qs_container);
         mIconContainer = findViewById(R.id.statusIcons);
         mPrivacyChip = findViewById(R.id.privacy_chip);
-        mDateView = findViewById(R.id.date);
-        mDateView.setOnClickListener(this);
         mClockDateView = findViewById(R.id.date_clock);
         mClockDateView.setOnClickListener(this);
         mSecurityHeaderView = findViewById(R.id.header_text_container);
@@ -321,7 +318,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
             default:
                 mSystemInfoText.setVisibility(View.GONE);
                 mSystemInfoIcon.setVisibility(View.GONE);
-            break;
+            	break;
             }
     }
 
@@ -405,7 +402,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
         if (v == mClockView) {
             mActivityStarter.postStartActivityDismissingKeyguard(new Intent(
                     AlarmClock.ACTION_SHOW_ALARMS), 0);
-        } else if (v == mDateView || v == mClockDateView) {
+        } else if (v == mClockDateView) {
             Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
             builder.appendPath("time");
             builder.appendPath(Long.toString(System.currentTimeMillis()));
@@ -419,7 +416,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
 
     @Override
     public boolean onLongClick(View v) {
-        if (v == mClockView || v == mDateView || v == mClockDateView) {
+        if (v == mClockView || v == mClockDateView) {
             Intent nIntent = new Intent(Intent.ACTION_MAIN);
             nIntent.setClassName("com.android.settings",
                     "com.android.settings.Settings$DateTimeSettingsActivity");
@@ -511,6 +508,8 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
                     android.R.attr.textColorSecondary);
             mTextColorPrimary = textColor;
             mClockView.setTextColor(textColor);
+            mClockDateView.setTextColor(textColor);
+            mSystemInfoText.setTextColor(textColor);
             if (mTintedIconManager != null) {
                 mTintedIconManager.setTint(textColor);
             }
@@ -571,8 +570,6 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
         TouchAnimator.Builder builder = new TouchAnimator.Builder()
                 .addFloat(mSecurityHeaderView, "alpha", 0, 1)
                 // These views appear on expanding down
-                .addFloat(mDateView, "alpha", 0, 0, 1)
-                .addFloat(mClockDateView, "alpha", 1, 0, 0)
                 .addFloat(mQSCarriers, "alpha", 0, 1)
                 // Use statusbar paddings when collapsed,
                 // align with QS when expanded, and animate translation
@@ -587,8 +584,6 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
                         if (!mIsSingleCarrier) {
                             mIconContainer.addIgnoredSlots(mRssiIgnoredSlots);
                         }
-                        // Make it gone so there's enough room for carrier names
-                        mClockDateView.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -842,12 +837,10 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
                 mShowClock =
                         TunerService.parseIntegerSwitch(newValue, true);
                 mClockView.setClockVisibleByUser(mShowClock);
-                mClockDateView.setVisibility(mShowClock && mShowDate ? View.VISIBLE : View.GONE);
                 break;
             case SHOW_QS_DATE:
                 mShowDate =
                         TunerService.parseIntegerSwitch(newValue, true);
-                mDateContainer.setVisibility(mShowDate ? View.VISIBLE : View.GONE);
                 mClockDateView.setVisibility(mShowClock && mShowDate ? View.VISIBLE : View.GONE);
                 break;
             case QS_BATTERY_STYLE:
