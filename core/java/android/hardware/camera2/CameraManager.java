@@ -629,12 +629,14 @@ public final class CameraManager {
         HashMap<String, CameraCharacteristics> physicalIdsToChars =
                 new HashMap<String, CameraCharacteristics>();
         Set<String> physicalCameraIds = chars.getPhysicalCameraIds();
+        boolean sWorkAroundDepthSensor =
+                SystemProperties.getBoolean("persist.enable_depthsensor_workaround", false);
         CameraCharacteristics physicalChars;
         for (String physicalCameraId : physicalCameraIds) {
-            try {
-                physicalChars = getCameraCharacteristics(physicalCameraId);
-            } catch (Exception e) {
+            if (sWorkAroundDepthSensor) {
                 physicalCameraId = "20";
+                physicalChars = getCameraCharacteristics(physicalCameraId);
+            } else {
                 physicalChars = getCameraCharacteristics(physicalCameraId);
             }
             physicalIdsToChars.put(physicalCameraId, physicalChars);
@@ -1432,7 +1434,7 @@ public final class CameraManager {
 
         public static final boolean sCameraServiceDisabled =
                 SystemProperties.getBoolean("config.disable_cameraservice", false);
-
+                
         public static CameraManagerGlobal get() {
             return gCameraManager;
         }
