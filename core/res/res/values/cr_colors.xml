@@ -15,5 +15,5 @@
      limitations under the License.
 -->
 <resources>
-
+    <color name="qs_shape_custom_color">#FFFFFF</color>
 </resources>
