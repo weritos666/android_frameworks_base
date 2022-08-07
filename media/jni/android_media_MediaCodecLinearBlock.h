@@ -40,7 +40,7 @@ struct JMediaCodecLinearBlock {
 
     std::once_flag mCopyWarningFlag;
 
-    std::shared_ptr<C2Buffer> toC2Buffer(size_t offset, size_t size) const {
+    std::shared_ptr<C2Buffer> toC2Buffer(size_t offset, size_t size) {
         if (mBuffer) {
             if (mBuffer->data().type() != C2BufferData::LINEAR) {
                 return nullptr;
@@ -64,21 +64,11 @@ struct JMediaCodecLinearBlock {
         return nullptr;
     }
 
-    sp<hardware::HidlMemory> toHidlMemory() const {
+    sp<hardware::HidlMemory> toHidlMemory() {
         if (mHidlMemory) {
             return mHidlMemory;
         }
         return nullptr;
-    }
-
-    size_t capacity() const {
-        if (mBlock) {
-            return mBlock->capacity();
-        }
-        if (mMemory) {
-            return mMemory->size();
-        }
-        return 0;
     }
 };
 

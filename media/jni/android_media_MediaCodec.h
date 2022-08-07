@@ -154,8 +154,6 @@ struct JMediaCodec : public AHandler {
 
     status_t getName(JNIEnv *env, jstring *name) const;
 
-    status_t getName(AString *name) const;
-
     status_t getCodecInfo(JNIEnv *env, jobject *codecInfo) const;
 
     status_t getMetrics(JNIEnv *env, mediametrics::Item * &reply) const;
