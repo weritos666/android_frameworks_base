@@ -65,7 +65,7 @@
             android:layout_width="@dimen/qs_header_alarm_icon_size"
             android:layout_height="@dimen/qs_header_alarm_icon_size"
             android:layout_marginStart="2dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="4.5dp"
             android:gravity="bottom|start"
             android:layout_gravity="bottom|start"
             android:visibility="gone" />

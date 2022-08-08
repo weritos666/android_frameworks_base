@@ -66,6 +66,7 @@ import com.android.systemui.tuner.TunerService;
 import lineageos.providers.LineageSettings;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.File;
 
 import java.util.List;
 
@@ -322,24 +323,45 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
             }
     }
 
+    public static boolean fileExists(String fileName) {
+        final File file = new File(fileName);
+        return file.exists();
+    }
+    
     private String getBatteryTemp() {
-        String value = readOneLine(mSysBatTemp);
-        return String.format("%s", Integer.parseInt(value) / mSysBatTempMultiplier) + "\u2103";
+    	if (!mSysBatTemp.isEmpty() && fileExists(mSysBatTemp)) {
+          String value = readOneLine(mSysBatTemp);
+          return String.format("%s", Integer.parseInt(value) / mSysBatTempMultiplier) + "\u2103";
+    	} else {
+    	  return "null" + "\u2103";
+        }
     }
 
     private String getCPUTemp() {
+    	if (!mSysCPUTemp.isEmpty() && fileExists(mSysCPUTemp)) {
         String value = readOneLine(mSysCPUTemp);
         return String.format("%s", Integer.parseInt(value) / mSysCPUTempMultiplier) + "\u2103";
+    	} else {
+    	  return "null" + "\u2103";
+       }
     }
 
     private String getGPUBusy() {
+    	if (!mSysGPULoad.isEmpty() && fileExists(mSysGPULoad)) {
         String value = readOneLine(mSysGPULoad);
         return value;
+    	} else {
+    	  return "null";
+       }
     }
 
     private String getGPUClock() {
+    	if (!mSysGPUFreq.isEmpty() && fileExists(mSysGPUFreq)) {
         String value = readOneLine(mSysGPUFreq);
         return String.format("%s", Integer.parseInt(value)) + "Mhz";
+    	} else {
+    	  return "null";
+       }
     }
 
     private static String readOneLine(String fname) {
