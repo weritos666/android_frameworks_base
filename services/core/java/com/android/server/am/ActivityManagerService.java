@@ -14375,7 +14375,8 @@ public class ActivityManagerService extends IActivityManager.Stub
     private void checkExcessivePowerUsage() {
         updateCpuStatsNow();
 
-        final boolean monitorPhantomProcs = false;
+        final boolean monitorPhantomProcs = mSystemReady && FeatureFlagUtils.isEnabled(mContext,
+                SETTINGS_ENABLE_MONITOR_PHANTOM_PROCS);
         synchronized (mProcLock) {
             final boolean doCpuKills = mLastPowerCheckUptime != 0;
             final long curUptime = SystemClock.uptimeMillis();
