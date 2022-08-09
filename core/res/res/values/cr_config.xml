@@ -196,4 +196,7 @@
         <item>org.codeaurora.gallery</item>
         <item>com.android.calculator2</item>
     </string-array>
+
+    <!-- System Info -->
+    <bool name="config_supportSystemInfo">false</bool>
 </resources>
