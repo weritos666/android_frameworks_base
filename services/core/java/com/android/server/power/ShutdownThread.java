@@ -645,12 +645,17 @@ public final class ShutdownThread extends Thread {
                 TelephonyManager telephonyManager = mContext.getSystemService(
                         TelephonyManager.class);
 
-                radioOff = telephonyManager == null
-                        || !telephonyManager.isAnyRadioPoweredOn();
-                if (!radioOff) {
-                    Log.w(TAG, "Turning off cellular radios...");
-                    metricStarted(METRIC_RADIO);
-                    telephonyManager.shutdownAllRadios();
+                try {
+                    radioOff = telephonyManager == null
+                            || !telephonyManager.isAnyRadioPoweredOn();
+                    if (!radioOff) {
+                        Log.w(TAG, "Turning off cellular radios...");
+                        metricStarted(METRIC_RADIO);
+                        telephonyManager.shutdownAllRadios();
+                    }
+                } catch (RuntimeException ex) {
+                    Log.e(TAG, "RuntimeException during radio shutdown. ", ex);
+                    radioOff = true;
                 }
 
                 Log.i(TAG, "Waiting for Radio...");
@@ -665,7 +670,12 @@ public final class ShutdownThread extends Thread {
                     }
 
                     if (!radioOff) {
-                        radioOff = !telephonyManager.isAnyRadioPoweredOn();
+                        try {
+                            radioOff = !telephonyManager.isAnyRadioPoweredOn();
+                        } catch (RuntimeException ex) {
+                            Log.e(TAG, "RuntimeException during radio shutdown. ", ex);
+                            radioOff = true;
+                        }
                         if (radioOff) {
                             Log.i(TAG, "Radio turned off.");
                             metricEnded(METRIC_RADIO);
