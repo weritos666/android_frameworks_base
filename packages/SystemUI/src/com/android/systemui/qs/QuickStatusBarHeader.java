@@ -341,7 +341,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
           String value = readOneLine(mSysBatTemp);
           return String.format("%s", Integer.parseInt(value) / mSysBatTempMultiplier) + "\u2103";
     	} else {
-    	  return "null" + "\u2103";
+    	  return " ";
         }
     }
 
@@ -350,7 +350,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
         String value = readOneLine(mSysCPUTemp);
         return String.format("%s", Integer.parseInt(value) / mSysCPUTempMultiplier) + "\u2103";
     	} else {
-    	  return "null" + "\u2103";
+    	  return " ";
        }
     }
 
@@ -359,7 +359,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
         String value = readOneLine(mSysGPULoad);
         return value;
     	} else {
-    	  return "null";
+    	  return " ";
        }
     }
 
@@ -368,7 +368,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
         String value = readOneLine(mSysGPUFreq);
         return String.format("%s", Integer.parseInt(value)) + "Mhz";
     	} else {
-    	  return "null";
+    	  return " ";
        }
     }
 
