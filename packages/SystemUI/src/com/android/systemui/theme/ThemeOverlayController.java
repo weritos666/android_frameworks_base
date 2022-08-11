@@ -654,7 +654,7 @@ public class ThemeOverlayController extends SystemUI implements Dumpable {
                             Collectors.joining(", ")));
         }
 
-        boolean isVividTheme = mSecureSettings.getInt(Settings.Secure.VIVID_COLORS, 0) == 1;
+        boolean isVividTheme = mSecureSettings.getInt(Settings.Secure.VIVID_COLORS, 0) != 0;
         mThemeManager.setIsVividTheme(isVividTheme);
 
         if (mNeedsOverlayCreation) {
