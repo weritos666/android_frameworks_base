@@ -6002,6 +6002,12 @@ public final class Settings {
         public static final String SECONDARY_COLOR_CLOCK = "use_secondary_color_clock";
 
         /**
+         * QS Tile Style
+         * @hide
+         */
+        public static final String QS_TILE_STYLE = "qs_tile_style";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
