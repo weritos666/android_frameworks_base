@@ -18,9 +18,6 @@
   <!-- Settings Restart -->
   <string name="settings_restart_title">Ayarların yeniden başlatılması gerekir</string>
   <string name="settings_restart_message">Dikkat! Ayarlar uygulamasını yeniden başlatırken uygulamada geçici bir çökme veya zorla kapatma meydana gelir. Ayarlar şimdi yeniden başlatılsın mı?</string>
-  <!-- SystemUI Restart -->
-  <string name="sysui_restart_title">Sistem arayüzünü yeniden başlatma gerekli</string>
-  <string name="sysui_restart_message">Dikkat! Sistem arayüzünü yeniden başlatırken uygulamada geçici bir çökme veya siyah ekran meydana gelir. Sistem arayüzü şimdi yeniden başlatılsın mı?</string>
   <!-- App lock -->
   <string name="unlock_application">Kilidi aç <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

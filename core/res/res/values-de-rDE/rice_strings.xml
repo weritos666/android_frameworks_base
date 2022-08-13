@@ -18,9 +18,6 @@
   <!-- Settings Restart -->
   <string name="settings_restart_title">Settings app restart required</string>
   <string name="settings_restart_message">Warning! When performing a settings app restart, user will experience a temporary settings app crash/force close. Restart settings app now?</string>
-  <!-- SystemUI Restart -->
-  <string name="sysui_restart_title">Systemui restart required</string>
-  <string name="sysui_restart_message">Warning! When performing a systemui restart, user will experience a temporary systemui crash/black screen. Restart systemui now?</string>
   <!-- App lock -->
   <string name="unlock_application">Unlock <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

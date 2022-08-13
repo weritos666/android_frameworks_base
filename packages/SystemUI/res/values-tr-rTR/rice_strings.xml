@@ -22,8 +22,6 @@
     <string name="refresh_rate_forced_mode_placeholder"><xliff:g id="refresh_rate" example="60">%1$d</xliff:g>Hz</string>
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Başlatmak için simgeden kaydırın</string>
-    <!-- SystemUI Restart power menu -->
-    <string name="global_action_reboot_systemui">Sistem Arayüzü</string>
     <!-- SystemUI tuner -->
     <string name="lockscreen_default">Varsayılan</string>
     <string name="lockscreen_hidden">Hiçbiri</string>
