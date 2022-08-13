@@ -97,6 +97,8 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
             "system:" + Settings.System.LEFT_PADDING;
     private static final String RIGHT_PADDING =
             "system:" + Settings.System.RIGHT_PADDING;
+    private static final String QS_HEADER_DATE_SIZE =
+            "system:" + Settings.System.QS_HEADER_DATE_SIZE;
 
     private final Handler mHandler = new Handler();
     public static final String QS_SHOW_INFO_HEADER = "qs_show_info_header";
@@ -168,6 +170,7 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
     private int mRoundedCornerPadding = 0;
     private int mLeftPad;
     private int mRightPad;
+    private int mQSDateSize;
     private int mHeaderPaddingLeft;
     private int mHeaderPaddingRight;
     private int mWaterfallTopInset;
@@ -270,7 +273,8 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
                 QS_SHOW_BATTERY_ESTIMATE,
                 NETWORK_TRAFFIC_LOCATION,
                 LEFT_PADDING,
-                RIGHT_PADDING);
+                RIGHT_PADDING,
+                QS_HEADER_DATE_SIZE);
     }
 
     void onAttach(TintedIconManager iconManager,
@@ -912,6 +916,10 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
             	updateHeadersPadding();
             	updateAlphaAnimator();
                 break;
+            case QS_HEADER_DATE_SIZE:
+            	mQSDateSize = TunerService.parseInteger(newValue, 14);
+            	mClockDateView.setTextSize(mQSDateSize);
+            	break;
             default:
                 break;
         }

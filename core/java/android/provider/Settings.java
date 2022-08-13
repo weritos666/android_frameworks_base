@@ -5986,6 +5986,12 @@ public final class Settings {
         public static final String QS_HEADER_CLOCK_SIZE = "qs_header_clock_size";
 
         /**
+         * Date font size QS
+         * @hide
+         */
+        public static final String QS_HEADER_DATE_SIZE = "qs_header_date_size";
+
+        /**
          * Change quick settings tiles animation style
          * @hide
          */
