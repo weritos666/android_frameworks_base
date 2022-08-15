@@ -103,6 +103,10 @@
         <item>com.android.systemui</item>
         <item>com.google.android.settings.intelligence</item>
         <item>com.crdroid.faceunlock</item>
+        <item>com.android.providers.telephony</item>
+        <item>com.android.mms.service</item>
+        <item>com.android.ons</item>
+        <item>com.android.stk</item>
     </string-array>
 
     <!-- Any package that has one of the package names defined below will be prevented
