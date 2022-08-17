@@ -109,8 +109,6 @@ public final class CachedAppOptimizer {
     private static final int COMPACT_ACTION_FILE_FLAG = 1;
     private static final int COMPACT_ACTION_ANON_FLAG = 2;
 
-    private static final String ATRACE_COMPACTION_TRACK = "Compaction";
-
     // Defaults for phenotype flags.
     @VisibleForTesting static final Boolean DEFAULT_USE_COMPACTION = false;
     @VisibleForTesting static final Boolean DEFAULT_USE_FREEZER = true;
@@ -593,8 +591,6 @@ public final class CachedAppOptimizer {
             if (DEBUG_COMPACTION) {
                 Slog.d(TAG_AM, "compactApp " + compactRequestType + " " + processName);
             }
-            Trace.instantForTrack(Trace.TRACE_TAG_ACTIVITY_MANAGER, ATRACE_COMPACTION_TRACK,
-                    "compactApp " + compactRequestType + " " + processName);
             app.mOptRecord.setHasPendingCompact(true);
             app.mOptRecord.setForceCompact(force);
             mPendingCompactionProcesses.add(app);
@@ -637,8 +633,6 @@ public final class CachedAppOptimizer {
             if (DEBUG_COMPACTION) {
                 Slog.d(TAG_AM, "compactAllSystem");
             }
-            Trace.instantForTrack(
-                    Trace.TRACE_TAG_ACTIVITY_MANAGER, ATRACE_COMPACTION_TRACK, "compactAllSystem");
             mCompactionHandler.sendMessage(mCompactionHandler.obtainMessage(
                                               COMPACT_SYSTEM_MSG));
         }
