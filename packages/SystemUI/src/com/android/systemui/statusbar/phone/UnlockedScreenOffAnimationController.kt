@@ -252,7 +252,7 @@ class UnlockedScreenOffAnimationController @Inject constructor(
         // already expanded and showing notifications/QS, the animation looks really messy. For now,
         // disable it if the notification panel is not fully collapsed.
         if (!this::statusBar.isInitialized ||
-                !statusBar.notificationPanelViewController.isFullyCollapsed) {
+                !statusBar.notificationPanelViewController.isPanelExpanded) {
             return false
         }
 

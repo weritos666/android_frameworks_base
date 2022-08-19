@@ -3002,15 +3002,20 @@ public class NotificationPanelViewController extends PanelViewController {
     private void updatePanelExpanded() {
         boolean isExpanded = !isFullyCollapsed() || mExpectingSynthesizedDown;
         if (mPanelExpanded != isExpanded) {
+            mPanelExpanded = isExpanded;
+
             mHeadsUpManager.setIsPanelExpanded(isExpanded);
             mStatusBarTouchableRegionManager.setPanelExpanded(isExpanded);
             mStatusBar.setPanelExpanded(isExpanded);
-            mPanelExpanded = isExpanded;
 
             if (!isExpanded && mQs != null && mQs.isCustomizing()) {
                 mQs.closeCustomizer();
             }
         }
+    }
+
+    boolean isPanelExpanded() {
+        return mPanelExpanded;
     }
 
     private int calculatePanelHeightShade() {
