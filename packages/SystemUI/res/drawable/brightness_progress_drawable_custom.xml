@@ -24,7 +24,7 @@
         <shape>
             <size android:height="@*android:dimen/custom_rounded_slider_track_width" />
             <corners android:radius="@*android:dimen/custom_rounded_slider_corner_radius"/>
-            <solid android:color="@color/qs_translucent_bg" />
+            <solid android:color="@color/qs_translucent_brightness_bg" />
         </shape>
       </inset>
     </item>

@@ -28,4 +28,5 @@
 
     <color name="volume_row_bg">@android:color/system_accent2_200</color>
     <color name="qs_translucent_bg">#59FFFFFF</color>
+    <color name="qs_translucent_brightness_bg">#33FFFFFF</color>
 </resources>

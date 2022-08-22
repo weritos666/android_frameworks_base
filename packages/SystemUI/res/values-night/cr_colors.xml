@@ -19,4 +19,5 @@
     <color name="volume_row_bg">@android:color/system_accent2_600</color>
     <color name="sysui_color_accent">@*android:color/system_accent1_100</color>
     <color name="qs_translucent_bg">#0FFFFFFF</color>
+    <color name="qs_translucent_brightness_bg">#0FFFFFFF</color>
 </resources>
