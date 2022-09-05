@@ -267,6 +267,7 @@ public class VolumeDialogImpl implements VolumeDialog,
     private View mAppVolumeView;
     private ImageButton mAppVolumeIcon;
     private View mAppVolumeSpacer;
+    private String mAppVolumeActivePackageName;
     private FrameLayout mZenIcon;
     private final List<VolumeRow> mRows = new ArrayList<>();
     private ConfigurableTexts mConfigurableTexts;
@@ -1315,13 +1316,26 @@ public class VolumeDialogImpl implements VolumeDialog,
     }
 
     private boolean shouldShowAppVolume() {
+    	mAppVolumeActivePackageName = null;
         AudioManager audioManager = mController.getAudioManager();
         for (AppVolume av : audioManager.listAppVolumes()) {
             if (av.isActive()) {
+            	mAppVolumeActivePackageName = av.getPackageName();
                 return true;
             }
         }
         return false;
+    }
+
+    private Drawable getApplicationIcon(String packageName) {
+        PackageManager pm = mContext.getPackageManager();
+        Drawable icon = null;
+        try {
+            icon = pm.getApplicationIcon(packageName);
+        } catch (Exception e) {
+            // nothing to do
+        }
+        return icon;
     }
 
     public void initAppVolumeH() {
@@ -1339,6 +1353,13 @@ public class VolumeDialogImpl implements VolumeDialog,
                 Dependency.get(ActivityStarter.class).startActivity(intent,
                         true /* dismissShade */);
             });
+            Drawable icon = mAppVolumeActivePackageName != null ?
+                    getApplicationIcon(mAppVolumeActivePackageName) : null;
+            if (icon != null) {
+                mAppVolumeIcon.setImageTintList(null);
+                mAppVolumeIcon.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                mAppVolumeIcon.setImageDrawable(icon);
+            }
         }
     }
 
