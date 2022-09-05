@@ -145,4 +145,7 @@
     <java-symbol type="string" name="config_sysGPULoad" />
     <java-symbol type="integer" name="config_sysCPUTempMultiplier" />
     <java-symbol type="integer" name="config_sysBatteryTempMultiplier" />
+
+  <!-- Location indicator -->
+  <java-symbol type="drawable" name="stat_sys_location" />
 </resources>
