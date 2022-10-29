@@ -11548,6 +11548,13 @@ public final class Settings {
         public static final String KG_CUSTOM_CLOCK_FONT = "kg_custom_clock_font";
 
         /**
+         * Change fonts for the system lockscreen date
+         *
+         * @hide
+         */
+        public static final String KG_CUSTOM_DATE_FONT = "kg_custom_date_font";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
