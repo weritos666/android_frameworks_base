@@ -704,7 +704,7 @@ public class VolumeDialogImpl implements VolumeDialog,
                             R.drawable.ic_volume_notification_mute, true, false);
                 }
                 addRow(STREAM_ALARM,
-                        R.drawable.ic_alarm, R.drawable.ic_volume_alarm_mute, true, false);
+                        R.drawable.ic_volume_alarm, R.drawable.ic_volume_alarm_mute, true, false);
                 addRow(AudioManager.STREAM_VOICE_CALL,
                         com.android.internal.R.drawable.ic_phone,
                         com.android.internal.R.drawable.ic_phone, false, false);
@@ -2309,6 +2309,10 @@ public class VolumeDialogImpl implements VolumeDialog,
                 ? Color.alpha(colorTint.getDefaultColor())
                 : getAlphaAttr(android.R.attr.disabledAlpha);
 
+        final ColorStateList colorTint2 = useActiveColoring
+                ? Utils.getColorAccent(mContext)
+                : Utils.getColorAttr(mContext, com.android.internal.R.attr.colorAccentCustom);
+
         final ColorStateList bgTint = useActiveColoring
                 ? Utils.getColorAttr(mContext, android.R.attr.colorBackgroundFloating)
                 : Utils.getColorAttr(mContext, com.android.internal.R.attr.colorAccentCustom);
@@ -2322,8 +2326,7 @@ public class VolumeDialogImpl implements VolumeDialog,
         }
 
         if (row.icon != null) {
-            row.icon.setImageTintList(inverseTextTint);
-            row.icon.setImageAlpha(alpha);
+            row.icon.setImageTintList(colorTint2);
         }
 
         if (row.number != null) {
