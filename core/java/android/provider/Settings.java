@@ -6006,6 +6006,12 @@ public final class Settings {
         public static final String SHOW_APP_VOLUME = "show_app_volume";
         
         /**
+         * Volume styles
+         * @hide
+         */
+        public static final String CUSTOM_VOLUME_STYLES = "custom_volume_styles";
+
+        /**
          * Whether to show the kill app button in notification guts
          * @hide
          */
