@@ -31,7 +31,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="179dp"
+            android:layout_height="@dimen/settingslib_toolbar_layout_height"
             android:clipToPadding="false"
             app:forceApplySystemWindowInsetTop="true"
             app:extraMultilineHeightEnabled="true"
@@ -39,13 +39,13 @@
             app:maxLines="3"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:scrimAnimationDuration="150"
-            app:scrimVisibleHeightTrigger="137dp"
+            app:scrimVisibleHeightTrigger="@dimen/settingslib_scrim_visible_height_trigger"
             app:statusBarScrim="@null"
             app:titleCollapseMode="scale"
             app:collapsedTitleTextAppearance="@style/CollapsingToolbarTitle.Collapsed"
             app:expandedTitleTextAppearance="@style/CollapsingToolbarTitle.Expanded"
-            app:expandedTitleMarginStart="24dp"
-            app:expandedTitleMarginEnd="24dp"
+            app:expandedTitleMarginStart="@dimen/expanded_title_margin_start"
+            app:expandedTitleMarginEnd="@dimen/expanded_title_margin_end"
             app:toolbarId="@id/action_bar">
 
             <Toolbar

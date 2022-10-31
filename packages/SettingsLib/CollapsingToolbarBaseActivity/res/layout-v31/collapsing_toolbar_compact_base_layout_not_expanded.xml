@@ -21,5 +21,5 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <include layout="@layout/collapsing_toolbar_secondary_content_layout"/>
+    <include layout="@layout/collapsing_toolbar_compact_content_layout_not_expanded"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
