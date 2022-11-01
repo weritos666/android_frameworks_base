@@ -216,9 +216,9 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks, TunerS
 
         mStatusBarContents = (ViewGroup) findViewById(R.id.status_bar_contents);
 
-        mBasePaddingLeft = mStatusBarContents.getPaddingStart();
+        mLeftPad = mStatusBarContents.getPaddingStart();
+        mRightPad = mStatusBarContents.getPaddingEnd();
         mBasePaddingTop = mStatusBarContents.getPaddingTop();
-        mBasePaddingRight = mStatusBarContents.getPaddingEnd();
         mBasePaddingBottom = mStatusBarContents.getPaddingBottom();
 
         updateResources();
