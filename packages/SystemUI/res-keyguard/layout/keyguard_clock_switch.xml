@@ -88,7 +88,7 @@
                android:id="@+id/keyguard_slice_view"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_below="@id/keyguard_slice_view">
+               android:layout_below="@id/keyguard_slice_view"/>
 
       <com.android.systemui.statusbar.phone.NotificationIconContainer
           android:id="@+id/left_aligned_notification_icon_container"
