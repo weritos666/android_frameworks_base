@@ -177,7 +177,7 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks, TunerS
 
         mBasePaddingTop = mStatusBarContents.getPaddingTop();
         mBasePaddingBottom = mStatusBarContents.getPaddingBottom();
-		Dependency.get(TunerService.class).addTunable(this,
+	Dependency.get(TunerService.class).addTunable(this,
                 LEFT_PADDING, RIGHT_PADDING);
 
         updateResources();
@@ -356,9 +356,9 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks, TunerS
     }
 
     private void updateLayoutForCutout() {
-        updateStatusBarHeight();
         updateCutoutLocation();
         updateSafeInsets();
+        updateStatusBarHeight();
     }
 
     private void updateCutoutLocation() {
@@ -389,9 +389,9 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks, TunerS
                 .getStatusBarContentInsetsForCurrentRotation();
 
         setPadding(
-                insets.first,
+                (int) mLeftPad
                 getPaddingTop(),
-                insets.second,
+                (int) mRightPad
                 getPaddingBottom());
 
         // Apply negative paddings to centered area layout so that we'll actually be on the center.
